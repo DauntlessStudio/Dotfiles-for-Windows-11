@@ -48,7 +48,6 @@ Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WorkspaceFold
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "GnuWin" | Join-Path -ChildPath "GnuWin.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Git" | Join-Path -ChildPath "Git.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Vim" | Join-Path -ChildPath "Vim.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VSCode" | Join-Path -ChildPath "VSCode.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Nodejs" | Join-Path -ChildPath "Nodejs.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Python3" | Join-Path -ChildPath "Python3.ps1");
@@ -64,6 +63,8 @@ Remove-Desktop-Shortcuts;
 
 Write-Host "Cleaning Dotfiles workspace:" -ForegroundColor "Green";
 Remove-Item $DotfilesFolder -Recurse -Force -ErrorAction SilentlyContinue;
+
+gh auth login;
 
 Write-Host "The process has finished." -ForegroundColor "Yellow";
 

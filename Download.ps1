@@ -13,6 +13,8 @@ $GitUserName = Read-Host -Prompt "Input your Git user name here";
 
 $GitUserEmail = Read-Host -Prompt "Input your Git user email here";
 
+$GitUserPassword = Read-Host -Prompt "Input your Git user password here";
+
 $ValidDisks = Get-PSDrive -PSProvider "FileSystem" | Select-Object -ExpandProperty "Root";
 do {
   Write-Host "Choose the location of your development workspace:" -ForegroundColor "Green";
