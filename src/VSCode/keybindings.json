@@ -1,18 +1,42 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-	{
-		"key": "ctrl+d",
-		"command": "-editor.action.addSelectionToNextFindMatch",
-		"when": "editorFocus"
-	},
-	{
-		"key": "ctrl+d",
-		"command": "editor.action.copyLinesDownAction",
-		"when": "editorTextFocus && !editorReadonly"
-	},
-	{
-		"key": "shift+alt+down",
-		"command": "-editor.action.copyLinesDownAction",
-		"when": "editorTextFocus && !editorReadonly"
-	}
+    {
+        "key": "ctrl+p ctrl+v",
+        "command": "bc-general-insert_block_pos"
+    },
+    {
+        "key": "ctrl+shift+\\",
+        "command": "-editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+\\",
+        "command": "editor.action.selectToBracket"
+    },
+    {
+        "key": "ctrl+b ctrl+up",
+        "command": "workbench.files.action.collapseExplorerFolders"
+    },
+    {
+        "key": "alt+right",
+        "command": "bc-general-cursor_to_end_of_line"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "-editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+alt+right",
+        "command": "cursorLineEndSelect"
+    },
+    {
+        "key": "ctrl+shift+alt+right",
+        "command": "-cursorColumnSelectRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "editor.action.smartSelect.expand"
+    }
 ]
