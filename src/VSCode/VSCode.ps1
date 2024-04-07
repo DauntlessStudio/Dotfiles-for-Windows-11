@@ -21,3 +21,4 @@ code --install-extension "visualstudioexptteam.vscodeintellicode";
 code --install-extension "pkief.material-icon-theme";
 code --install-extension "misodee.vscode-nbt";
 code --install-extension "jannisx11.snowstorm";
+code --install-extension "Dart-Code.flutter";
