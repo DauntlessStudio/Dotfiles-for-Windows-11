@@ -52,6 +52,8 @@ Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VSCode" | Joi
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Nodejs" | Join-Path -ChildPath "Nodejs.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Python3" | Join-Path -ChildPath "Python3.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dotnet" | Join-Path -ChildPath "Dotnet.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VisualStudio" | Join-Path -ChildPath "VisualStudio.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "AndroidStudio" | Join-Path -ChildPath "AndroidStudio.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Windows" | Join-Path -ChildPath "Windows.ps1");
 
 # Clean
