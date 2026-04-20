@@ -1,1 +1,1 @@
-choco install -y androidstudio
+choco install -y android-sdk

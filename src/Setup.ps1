@@ -40,17 +40,33 @@ if (-not (Get-Module-Installation-Status -ModuleName "PackageManagement" -Module
   Install-Module -Name "PackageManagement" -Force -MinimumVersion "1.4.6" -Scope "CurrentUser" -AllowClobber -Repository "PSGallery";
 }
 
-# Register the script to start after reboot
-Register-DotfilesScript-As-RunOnce;
+# Reboot the PC and rerun the script after installing wsl only if it is not installed yet
+$wslInstalled = Get-Command "wsl" -ErrorAction SilentlyContinue
+if (!$wslInstalled) {
+  Write-Host "WSL not detected. Initiating installation and mandatory reboot..." -ForegroundColor "Cyan"
+  
+  # Register this script to run again after the reboot
+  Register-DotfilesScript-As-RunOnce;
+
+  # Install WSL (This enables Virtual Machine Platform & WSL features)
+  wsl --install
+  
+  Write-Host "Restarting in 10 seconds to finalize WSL installation..." -ForegroundColor "Yellow"
+  Start-Sleep -Seconds 10
+  Restart-Computer
+  return # Stop execution of the rest of the script
+}
 
 # Run scripts
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WorkspaceFolder" | Join-Path -ChildPath "WorkspaceFolder.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "GnuWin" | Join-Path -ChildPath "GnuWin.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Docker" | Join-Path -ChildPath "Docker.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WorkspaceFolder" | Join-Path -ChildPath "WorkspaceFolder.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chrome" | Join-Path -ChildPath "Chrome.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Flutter" | Join-Path -ChildPath "Flutter.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Git" | Join-Path -ChildPath "Git.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "GitHub" | Join-Path -ChildPath "Git.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "GnuWin" | Join-Path -ChildPath "GnuWin.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VSCode" | Join-Path -ChildPath "VSCode.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Nodejs" | Join-Path -ChildPath "Nodejs.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Python3" | Join-Path -ChildPath "Python3.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dotnet" | Join-Path -ChildPath "Dotnet.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VisualStudio" | Join-Path -ChildPath "VisualStudio.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "AndroidStudio" | Join-Path -ChildPath "AndroidStudio.ps1");

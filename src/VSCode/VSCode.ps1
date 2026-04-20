@@ -13,7 +13,7 @@ function Set-VSCode-Configuration {
 choco install -y "vscode" --params "/NoDesktopIcon /NoQuicklaunchIcon /NoContextMenuFiles /NoContextMenuFolders";
 Set-VSCode-Configuration;
 refreshenv;
-code --install-extension "blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension";
+# code --install-extension "blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension";
 code --install-extension "acarreiro.calculate";
 code --install-extension "eamodio.gitlens";
 code --install-extension "albymor.increment-selection";
@@ -21,4 +21,4 @@ code --install-extension "visualstudioexptteam.vscodeintellicode";
 code --install-extension "pkief.material-icon-theme";
 code --install-extension "misodee.vscode-nbt";
 code --install-extension "jannisx11.snowstorm";
-code --install-extension "Dart-Code.flutter";
+# code --install-extension "Dart-Code.flutter";
