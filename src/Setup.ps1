@@ -58,9 +58,11 @@ if (!$wslInstalled) {
 }
 
 # Run scripts
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Windows" | Join-Path -ChildPath "Windows.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WSL" | Join-Path -ChildPath "WSL.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Docker" | Join-Path -ChildPath "Docker.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WorkspaceFolder" | Join-Path -ChildPath "WorkspaceFolder.ps1");
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Docker" | Join-Path -ChildPath "Docker.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chrome" | Join-Path -ChildPath "Chrome.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Flutter" | Join-Path -ChildPath "Flutter.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Git" | Join-Path -ChildPath "Git.ps1");
@@ -70,7 +72,6 @@ Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VSCode" | Joi
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dotnet" | Join-Path -ChildPath "Dotnet.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "VisualStudio" | Join-Path -ChildPath "VisualStudio.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "AndroidStudio" | Join-Path -ChildPath "AndroidStudio.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Windows" | Join-Path -ChildPath "Windows.ps1");
 
 # Clean
 # Unregister script from RunOnce
