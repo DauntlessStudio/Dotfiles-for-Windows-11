@@ -41,8 +41,8 @@ if (-not (Get-Module-Installation-Status -ModuleName "PackageManagement" -Module
 }
 
 # Reboot the PC and rerun the script after installing wsl only if it is not installed yet
-$wslCheck = wsl --list --quiet 2>$null
-if ($null -eq $wslCheck) {
+$wslCheck = wsl --status
+if ("not installed" -match $wslCheck) {
   Write-Host "WSL not detected. Initiating installation and mandatory reboot..." -ForegroundColor "Cyan"
   
   # Register this script to run again after the reboot
