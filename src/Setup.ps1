@@ -41,15 +41,15 @@ if (-not (Get-Module-Installation-Status -ModuleName "PackageManagement" -Module
 }
 
 # Reboot the PC and rerun the script after installing wsl only if it is not installed yet
-$wslInstalled = Get-Command "wsl" -ErrorAction SilentlyContinue
-if (!$wslInstalled) {
+$wslCheck = wsl --list --quiet 2>$null
+if ($null -eq $wslCheck) {
   Write-Host "WSL not detected. Initiating installation and mandatory reboot..." -ForegroundColor "Cyan"
   
   # Register this script to run again after the reboot
   Register-DotfilesScript-As-RunOnce;
 
   # Install WSL (This enables Virtual Machine Platform & WSL features)
-  wsl --install
+  wsl --install -d Debian
   
   Write-Host "Restarting in 10 seconds to finalize WSL installation..." -ForegroundColor "Yellow"
   Start-Sleep -Seconds 10
