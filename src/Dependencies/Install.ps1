@@ -1,0 +1,10 @@
+choco install -y "android-sdk";
+choco install -y "docker-desktop";
+choco install -y "googlechrome" --ignore-checksums;
+choco install -y "dotnet-sdk";
+choco install -y "flutter";
+choco install -y "git" --params "/NoAutoCrlf /WindowsTerminal /NoShellIntegration /SChannel";
+choco install -y "gh";
+choco install -y "gnuwin32-coreutils.install";
+choco install -y "visualstudio2022buildtools";
+choco install -y "vscode" --params "/NoDesktopIcon /NoQuicklaunchIcon /NoContextMenuFiles /NoContextMenuFolders";

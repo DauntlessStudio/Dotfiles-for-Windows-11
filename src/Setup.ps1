@@ -3,7 +3,7 @@ $GitHubRepositoryName = "Dotfiles-for-Windows-11";
 $DotfilesFolder = Join-Path -Path $HOME -ChildPath ".dotfiles";
 $DotfilesWorkFolder = Join-Path -Path $DotfilesFolder -ChildPath "${GitHubRepositoryName}-main" | Join-Path -ChildPath "src";
 $DotfilesHelpersFolder = Join-Path -Path $DotfilesWorkFolder -ChildPath "Helpers";
-$DotfilesPackagesFolder = Join-Path -Path $DotfilesWorkFolder -ChildPath "Packages";
+$DotfilesPackagesFolder = Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies";
 $DotfilesConfigFile = Join-Path -Path $DotfilesFolder -ChildPath "${GitHubRepositoryName}-main" | Join-Path -ChildPath "config.json";
 
 $LogPath = Join-Path -Path $HOME -ChildPath "dotfiles_setup.log"
@@ -51,7 +51,7 @@ if ("Setup" -match $Config.Progress) {
 }
 
 if ("InstallPackages" -match $Config.Progress) {
-  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Packages" | Join-Path -ChildPath "Install.ps1");
+  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies" | Join-Path -ChildPath "Install.ps1");
 
   Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Config $Config -Progress "SetupPackages";
   Write-Host "Restarting in 10 seconds to restart environment..." -ForegroundColor "Yellow";
@@ -60,7 +60,7 @@ if ("InstallPackages" -match $Config.Progress) {
 }
 
 if ("SetupPackages" -match $Config.Progress) {
-  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Packages" | Join-Path -ChildPath "Setup.ps1");
+  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies" | Join-Path -ChildPath "Setup.ps1");
 }
 
 # Clean
