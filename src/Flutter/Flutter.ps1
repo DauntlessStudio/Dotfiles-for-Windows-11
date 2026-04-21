@@ -1,2 +1,2 @@
 choco install -y flutter;
-refreshenv;
+Update-EnvironmentVariables;

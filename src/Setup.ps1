@@ -5,6 +5,9 @@ $DotfilesWorkFolder = Join-Path -Path $DotfilesFolder -ChildPath "${GitHubReposi
 $DotfilesHelpersFolder = Join-Path -Path $DotfilesWorkFolder -ChildPath "Helpers";
 $DotfilesConfigFile = Join-Path -Path $DotfilesFolder -ChildPath "${GitHubRepositoryName}-main" | Join-Path -ChildPath "config.json";
 
+$LogPath = Join-Path -Path $HOME -ChildPath "dotfiles_setup.log"
+Start-Transcript -Path $LogPath -Append
+
 Write-Host "Welcome to Dotfiles for Microsoft Windows 11" -ForegroundColor "Yellow";
 Write-Host "Please don't use your device while the script is running." -ForegroundColor "Yellow";
 
@@ -90,3 +93,5 @@ Write-Host "The process has finished." -ForegroundColor "Yellow";
 Write-Host "Restarting the PC in 10 seconds..." -ForegroundColor "Green";
 Start-Sleep -Seconds 10;
 Restart-Computer;
+
+Stop-Transcript

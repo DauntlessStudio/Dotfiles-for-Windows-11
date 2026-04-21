@@ -1,2 +1,2 @@
 choco install -y "gh";
-refreshenv;
+Update-EnvironmentVariables;
