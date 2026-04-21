@@ -37,7 +37,8 @@ if ("Setup" -match $Config.Progress) {
     Register-DotfilesScript-As-RunOnce;
 
     # Install Debian as default
-    wsl --install -d Debian
+    wsl --install;
+    wsl --install -d Debian;
     Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Windows" | Join-Path -ChildPath "Windows.ps1");
     Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
     
