@@ -34,12 +34,13 @@ function Set-VSCode-Configuration {
   code --install-extension "albymor.increment-selection";
   code --install-extension "visualstudioexptteam.vscodeintellicode";
   code --install-extension "pkief.material-icon-theme";
-  code --install-extension "misodee.vscode-nbt";
-  code --install-extension "jannisx11.snowstorm";
+#   code --install-extension "misodee.vscode-nbt";
+#   code --install-extension "jannisx11.snowstorm";
   code --install-extension "ms-vscode-remote.remote-wsl";
 }
 
 function Set-WSL-Configuration {
+    wsl --install -d Debian;
     wsl -d Debian -u root sh -c "apt-get update && apt-get install -y curl xz-utils";
     wsl -d Debian sh -c "curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --no-daemon";
     wsl sh -c "git config --global include.path /mnt/c/Users/$env:USERNAME/.gitconfig";
@@ -49,15 +50,9 @@ function Set-Dotnet-Configuration {
     dotnet tool install --global dotnet-ef;
 }
 
-function Set-Github-Configuration {
-    Write-Host "`a"
-    gh auth login;
-}
-
 Set-ChromeAsDefaultBrowser;
 Set-Git-Configuration;
 Set-Gnu-Configuration;
 Set-VSCode-Configuration;
 Set-WSL-Configuration;
 Set-Dotnet-Configuration;
-Set-Github-Configuration;
