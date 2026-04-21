@@ -20,6 +20,10 @@ function Set-Configuration-File {
     [Parameter( Position = 4, Mandatory = $TRUE)]
     [String]
     $WorkspaceDisk
+
+    [Parameter( Position = 5, Mandatory = $TRUE)]
+    [String]
+    $Progress
   )
 
   if (-not (Test-Path -Path $DotfilesConfigFile)) {
@@ -29,12 +33,43 @@ function Set-Configuration-File {
       GitUserName   = $GitUserName
       GitUserEmail  = $GitUserEmail
       WorkspaceDisk = $WorkspaceDisk
+      Progress = $Progress
     };
 
     Set-Content -Path $DotfilesConfigFile -Value ($ConfigJsonBody | ConvertTo-Json);
 
     Write-Host "config.json file successfully created." -ForegroundColor "Green";
   }
+}
+
+function Update-Configuration-File {
+  [CmdletBinding()]
+  param (
+    [Parameter( Position = 0, Mandatory = $TRUE)]
+    [String]
+    $DotfilesConfigFile,
+
+    [Parameter( Position = 1, Mandatory = $TRUE)]
+    [PSCustomObject]
+    $Config,
+
+    [Parameter( Position = 2, Mandatory = $TRUE)]
+    [String]
+    $Progress
+  )
+
+  Write-Host "Creating config.json file:" -ForegroundColor "Green";
+  $ConfigJsonBody = [PSCustomObject]@{
+    ComputerName  = $Config.ComputerName
+    GitUserName   = $Config.GitUserName
+    GitUserEmail  = $Config.GitUserEmail
+    WorkspaceDisk = $Config.WorkspaceDisk
+    Progress = $Progress
+  };
+
+  Set-Content -Path $DotfilesConfigFile -Value ($ConfigJsonBody | ConvertTo-Json);
+
+  Write-Host "config.json file successfully updated." -ForegroundColor "Green";
 }
 
 function Get-Configuration-File {
