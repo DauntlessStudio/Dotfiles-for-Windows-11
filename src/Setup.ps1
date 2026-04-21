@@ -53,19 +53,24 @@ if ("Setup" -match $Config.Progress) {
 if ("InstallPackages" -match $Config.Progress) {
   Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies" | Join-Path -ChildPath "Install.ps1");
 
-  Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Config $Config -Progress "SetupPackages";
+  # Register this script to run again after the reboot
+  Register-DotfilesScript-As-RunOnce;
+
+  Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Config $Config -Progress "Finalize";
   Write-Host "Restarting in 10 seconds to restart environment..." -ForegroundColor "Yellow";
   Start-Sleep -Seconds 10;
   Restart-Computer;
+  return;
 }
 
-if ("SetupPackages" -match $Config.Progress) {
-  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies" | Join-Path -ChildPath "Setup.ps1");
+if (-not ("Finalize" -match $Config.Progress)) {
+  return;
 }
+
+# Setup now installed packages
+Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Dependencies" | Join-Path -ChildPath "Setup.ps1");
 
 # Clean
-
-# Unregister script from RunOnce
 Remove-DotfilesScript-From-RunOnce;
 
 Write-Host "Deleting Desktop shortcuts:" -ForegroundColor "Green";
