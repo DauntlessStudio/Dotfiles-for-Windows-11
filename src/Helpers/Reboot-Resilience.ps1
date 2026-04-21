@@ -16,18 +16,3 @@ function Remove-DotfilesScript-From-RunOnce() {
     Remove-ItemProperty -Path $RegPath -Name $ScriptName;
   }
 }
-
-function Update-EnvironmentVariables {
-  foreach($level in "Machine", "User") {
-    [Environment]::GetEnvironmentVariables($level).GetEnumerator() | ForEach-Object {
-      $name = $_.Key
-      $value = $_.Value
-      if ($name -eq "Path") {
-        $oldPath = [Environment]::GetEnvironmentVariable("Path", $level)
-        $env:Path = "$oldPath;$value"
-      } else {
-        [Environment]::SetEnvironmentVariable($name, $value, "Process")
-      }
-    }
-  }
-}

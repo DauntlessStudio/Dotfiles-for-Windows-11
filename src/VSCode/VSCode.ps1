@@ -12,7 +12,7 @@ function Set-VSCode-Configuration {
 
 choco install -y "vscode" --params "/NoDesktopIcon /NoQuicklaunchIcon /NoContextMenuFiles /NoContextMenuFolders";
 Set-VSCode-Configuration;
-Update-EnvironmentVariables;
+refreshenv;
 # code --install-extension "blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension";
 code --install-extension "acarreiro.calculate";
 code --install-extension "eamodio.gitlens";

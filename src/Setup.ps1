@@ -53,6 +53,7 @@ if ("not installed" -match $wslCheck) {
 
   # Install WSL (This enables Virtual Machine Platform & WSL features)
   wsl --install -d Debian
+  Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
   
   Write-Host "Restarting in 10 seconds to finalize WSL installation..." -ForegroundColor "Yellow"
   Start-Sleep -Seconds 10
@@ -63,7 +64,6 @@ if ("not installed" -match $wslCheck) {
 # Run scripts
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Windows" | Join-Path -ChildPath "Windows.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WSL" | Join-Path -ChildPath "WSL.ps1");
-Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "WorkspaceFolder" | Join-Path -ChildPath "WorkspaceFolder.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Docker" | Join-Path -ChildPath "Docker.ps1");
 Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chrome" | Join-Path -ChildPath "Chrome.ps1");

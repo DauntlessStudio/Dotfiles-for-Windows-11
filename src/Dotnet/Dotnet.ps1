@@ -1,3 +1,3 @@
 choco install -y "dotnet-sdk";
-Update-EnvironmentVariables;
+refreshenv;
 dotnet tool install --global dotnet-ef;

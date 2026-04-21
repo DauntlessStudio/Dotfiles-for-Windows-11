@@ -7,5 +7,5 @@ function Set-Git-Configuration {
 }
 
 choco install -y "git" --params "/NoAutoCrlf /WindowsTerminal /NoShellIntegration /SChannel";
-Update-EnvironmentVariables;
+refreshenv;
 Set-Git-Configuration;
