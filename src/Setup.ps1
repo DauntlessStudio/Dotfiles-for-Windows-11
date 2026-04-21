@@ -42,7 +42,7 @@ if ("Setup" -match $Config.Progress) {
     Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Chocolatey" | Join-Path -ChildPath "Chocolatey.ps1");
     
     # Prepare to run packages on next reload
-    Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Progress "InstallPackages";
+    Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Config $Config -Progress "InstallPackages";
     Write-Host "Restarting in 10 seconds to finalize WSL installation..." -ForegroundColor "Yellow";
     Start-Sleep -Seconds 10;
     Restart-Computer;
@@ -53,7 +53,7 @@ if ("Setup" -match $Config.Progress) {
 if ("InstallPackages" -match $Config.Progress) {
   Invoke-Expression (Join-Path -Path $DotfilesWorkFolder -ChildPath "Packages" | Join-Path -ChildPath "Install.ps1");
 
-  Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Progress "SetupPackages";
+  Update-Configuration-File -DotfilesConfigFile $DotfilesConfigFile -Config $Config -Progress "SetupPackages";
   Write-Host "Restarting in 10 seconds to restart environment..." -ForegroundColor "Yellow";
   Start-Sleep -Seconds 10;
   Restart-Computer;
